@@ -1,6 +1,6 @@
 {
   "$type": "Models.Core.Simulations, Models",
-  "ExplorerWidth": 640,
+  "ExplorerWidth": 625,
   "Version": 148,
   "Name": "Simulations",
   "Children": [
