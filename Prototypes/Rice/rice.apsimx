@@ -1,6 +1,6 @@
 {
   "$type": "Models.Core.Simulations, Models",
-  "ExplorerWidth": 674,
+  "ExplorerWidth": 300,
   "Version": 155,
   "Name": "Simulations",
   "ResourceName": null,
@@ -906,6 +906,45 @@
                   "SetEvent": "FlagLeaf",
                   "ReSetEvent": "never",
                   "Name": "FlagLeafDAS",
+                  "ResourceName": null,
+                  "Children": [
+                    {
+                      "$type": "Models.Memo, Models",
+                      "Text": "\r\nA function is used to provide flowering date as days after sowing(DAS).\r\n",
+                      "Name": "memo",
+                      "ResourceName": null,
+                      "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    },
+                    {
+                      "$type": "Models.Functions.Constant, Models",
+                      "FixedValue": 0.0,
+                      "Units": null,
+                      "Name": "PreEventValue",
+                      "ResourceName": null,
+                      "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    },
+                    {
+                      "$type": "Models.Functions.VariableReference, Models",
+                      "VariableName": "[Plant].DaysAfterSowing",
+                      "Name": "PostEventValue",
+                      "ResourceName": null,
+                      "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.Functions.OnEventFunction, Models",
+                  "SetEvent": "PanicleInitiation",
+                  "ReSetEvent": "never",
+                  "Name": "PanicleInitiationDAS",
                   "ResourceName": null,
                   "Children": [
                     {
@@ -6678,6 +6717,35 @@
           ],
           "Enabled": true,
           "ReadOnly": false
+        },
+        {
+          "$type": "Models.Report, Models",
+          "VariableNames": [
+            "[Clock].Today",
+            "[Rice].Ear.Wt",
+            "[Rice].AboveGround.Wt",
+            "[Rice].Grain.Wt",
+            "[Rice].Leaf.LAI",
+            "[Rice].Leaf.Wt",
+            "[Rice].Leaf.SpecificArea",
+            "[Rice].Spike.Wt",
+            "[Rice].Grain.Total.Wt",
+            "[Rice].Stem.Wt",
+            "[Rice].Phenology.CurrentStageName",
+            "[Rice].Leaf.PlantAppearedLeafNo",
+            "[Rice].Leaf.LAITotal",
+            "[Rice].Phenology.FloweringDAS",
+            "[Rice].Phenology.PanicleInitiationDAS"
+          ],
+          "EventNames": [
+            "[Clock].EndOfDay"
+          ],
+          "GroupByVariableName": null,
+          "Name": "Report",
+          "ResourceName": null,
+          "Children": [],
+          "Enabled": true,
+          "ReadOnly": false
         }
       ],
       "Enabled": true,
@@ -6699,6 +6767,20 @@
             "Observed"
           ],
           "Name": "Observed",
+          "ResourceName": null,
+          "Children": [],
+          "Enabled": true,
+          "ReadOnly": false
+        },
+        {
+          "$type": "Models.PostSimulationTools.PredictedObserved, Models",
+          "PredictedTableName": "Report",
+          "ObservedTableName": "Observed",
+          "FieldNameUsedForMatch": "Clock.Today",
+          "FieldName2UsedForMatch": null,
+          "FieldName3UsedForMatch": null,
+          "AllColumns": false,
+          "Name": "PredictedObserved",
           "ResourceName": null,
           "Children": [],
           "Enabled": true,
@@ -7624,7 +7706,8 @@
                         "[Rice].Grain.Total.Wt",
                         "[Rice].Stem.Wt",
                         "[Rice].Phenology.CurrentStageName",
-                        "[Rice].Leaf.PlantAppearedLeafNo"
+                        "[Rice].Leaf.PlantAppearedLeafNo",
+                        "[Rice].Leaf.LAITotal"
                       ],
                       "EventNames": [
                         "[Clock].EndOfDay"
@@ -7716,7 +7799,7 @@
                       "LineThickness": 0,
                       "TableName": "Report",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Leaf.LAI",
+                      "YFieldName": "Rice.Leaf.LAITotal",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": false,
@@ -7745,7 +7828,7 @@
                       "LineThickness": 0,
                       "TableName": "Observed",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Leaf.LAI",
+                      "YFieldName": "Rice.Leaf.LAITotal",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": true,
@@ -7946,6 +8029,84 @@
                       "Name": "observed",
                       "ResourceName": null,
                       "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.Graph, Models",
+                  "Caption": null,
+                  "Axis": [
+                    {
+                      "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                      "Title": null,
+                      "Position": 3,
+                      "Inverted": false,
+                      "CrossesAtZero": false,
+                      "Minimum": "NaN",
+                      "Maximum": "NaN",
+                      "Interval": "NaN"
+                    },
+                    {
+                      "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                      "Title": null,
+                      "Position": 0,
+                      "Inverted": false,
+                      "CrossesAtZero": false,
+                      "Minimum": null,
+                      "Maximum": null,
+                      "Interval": null
+                    }
+                  ],
+                  "LegendPosition": 0,
+                  "LegendOrientation": 0,
+                  "AnnotationLocation": 0,
+                  "DisabledSeries": [],
+                  "LegendOutsideGraph": false,
+                  "Name": "PredictedObsLAI",
+                  "ResourceName": null,
+                  "Children": [
+                    {
+                      "$type": "Models.Series, Models",
+                      "Type": 1,
+                      "XAxis": 3,
+                      "YAxis": 0,
+                      "ColourArgb": -16777216,
+                      "FactorToVaryColours": "FertTime",
+                      "FactorToVaryMarkers": null,
+                      "FactorToVaryLines": null,
+                      "Marker": 0,
+                      "MarkerSize": 0,
+                      "Line": 4,
+                      "LineThickness": 0,
+                      "TableName": "PredictedObserved",
+                      "XFieldName": "Observed.Rice.Leaf.LAITotal",
+                      "YFieldName": "Predicted.Rice.Leaf.LAITotal",
+                      "X2FieldName": null,
+                      "Y2FieldName": null,
+                      "ShowInLegend": false,
+                      "IncludeSeriesNameInLegend": false,
+                      "Cumulative": false,
+                      "CumulativeX": false,
+                      "Filter": null,
+                      "Name": "plot",
+                      "ResourceName": null,
+                      "Children": [
+                        {
+                          "$type": "Models.Regression, Models",
+                          "ForEachSeries": false,
+                          "showOneToOne": true,
+                          "showEquation": true,
+                          "Name": "Regression",
+                          "ResourceName": null,
+                          "Children": [],
+                          "Enabled": true,
+                          "ReadOnly": false
+                        }
+                      ],
                       "Enabled": true,
                       "ReadOnly": false
                     }
@@ -8976,7 +9137,7 @@
                       "YFieldName": "Rice.Grain.Total.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
-                      "ShowInLegend": true,
+                      "ShowInLegend": false,
                       "IncludeSeriesNameInLegend": false,
                       "Cumulative": false,
                       "CumulativeX": false,
@@ -9002,10 +9163,10 @@
                       "LineThickness": 0,
                       "TableName": "Observed",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Grain.Total.Wt",
+                      "YFieldName": "Rice.Grain.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
-                      "ShowInLegend": true,
+                      "ShowInLegend": false,
                       "IncludeSeriesNameInLegend": false,
                       "Cumulative": false,
                       "CumulativeX": false,
@@ -12691,7 +12852,7 @@
                       "YFieldName": "Rice.Grain.Total.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
-                      "ShowInLegend": false,
+                      "ShowInLegend": true,
                       "IncludeSeriesNameInLegend": false,
                       "Cumulative": false,
                       "CumulativeX": false,
@@ -13790,10 +13951,10 @@
                       "LineThickness": 0,
                       "TableName": "Report",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Ear.Wt",
+                      "YFieldName": "Rice.Grain.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
-                      "ShowInLegend": true,
+                      "ShowInLegend": false,
                       "IncludeSeriesNameInLegend": false,
                       "Cumulative": false,
                       "CumulativeX": false,
@@ -13819,7 +13980,7 @@
                       "LineThickness": 0,
                       "TableName": "Observed",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.AboveGround.Wt",
+                      "YFieldName": "Rice.Grain.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": true,
@@ -13923,6 +14084,329 @@
                       "CumulativeX": false,
                       "Filter": null,
                       "Name": "observed",
+                      "ResourceName": null,
+                      "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                }
+              ],
+              "Enabled": true,
+              "ReadOnly": false
+            }
+          ],
+          "Enabled": true,
+          "ReadOnly": false
+        },
+        {
+          "$type": "Models.Core.Folder, Models",
+          "ShowInDocs": false,
+          "GraphsPerPage": 6,
+          "Name": "CombinedResults",
+          "ResourceName": null,
+          "Children": [
+            {
+              "$type": "Models.Graph, Models",
+              "Caption": null,
+              "Axis": [
+                {
+                  "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                  "Title": null,
+                  "Position": 3,
+                  "Inverted": false,
+                  "CrossesAtZero": false,
+                  "Minimum": "NaN",
+                  "Maximum": "NaN",
+                  "Interval": "NaN"
+                },
+                {
+                  "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                  "Title": null,
+                  "Position": 0,
+                  "Inverted": false,
+                  "CrossesAtZero": false,
+                  "Minimum": null,
+                  "Maximum": null,
+                  "Interval": null
+                }
+              ],
+              "LegendPosition": 0,
+              "LegendOrientation": 0,
+              "AnnotationLocation": 0,
+              "DisabledSeries": [],
+              "LegendOutsideGraph": false,
+              "Name": "PredictedObsLAI",
+              "ResourceName": null,
+              "Children": [
+                {
+                  "$type": "Models.Series, Models",
+                  "Type": 1,
+                  "XAxis": 3,
+                  "YAxis": 0,
+                  "ColourArgb": -16777216,
+                  "FactorToVaryColours": "Experiment",
+                  "FactorToVaryMarkers": null,
+                  "FactorToVaryLines": null,
+                  "Marker": 0,
+                  "MarkerSize": 0,
+                  "Line": 4,
+                  "LineThickness": 0,
+                  "TableName": "PredictedObserved",
+                  "XFieldName": "Observed.Rice.Leaf.LAITotal",
+                  "YFieldName": "Predicted.Rice.Leaf.LAITotal",
+                  "X2FieldName": null,
+                  "Y2FieldName": null,
+                  "ShowInLegend": false,
+                  "IncludeSeriesNameInLegend": false,
+                  "Cumulative": false,
+                  "CumulativeX": false,
+                  "Filter": null,
+                  "Name": "plot",
+                  "ResourceName": null,
+                  "Children": [
+                    {
+                      "$type": "Models.Regression, Models",
+                      "ForEachSeries": false,
+                      "showOneToOne": true,
+                      "showEquation": true,
+                      "Name": "Regression",
+                      "ResourceName": null,
+                      "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                }
+              ],
+              "Enabled": true,
+              "ReadOnly": false
+            },
+            {
+              "$type": "Models.Graph, Models",
+              "Caption": null,
+              "Axis": [
+                {
+                  "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                  "Title": null,
+                  "Position": 3,
+                  "Inverted": false,
+                  "CrossesAtZero": false,
+                  "Minimum": "NaN",
+                  "Maximum": "NaN",
+                  "Interval": "NaN"
+                },
+                {
+                  "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                  "Title": null,
+                  "Position": 0,
+                  "Inverted": false,
+                  "CrossesAtZero": false,
+                  "Minimum": null,
+                  "Maximum": null,
+                  "Interval": null
+                }
+              ],
+              "LegendPosition": 0,
+              "LegendOrientation": 0,
+              "AnnotationLocation": 0,
+              "DisabledSeries": [],
+              "LegendOutsideGraph": false,
+              "Name": "PredictedObsYield",
+              "ResourceName": null,
+              "Children": [
+                {
+                  "$type": "Models.Series, Models",
+                  "Type": 1,
+                  "XAxis": 3,
+                  "YAxis": 0,
+                  "ColourArgb": -16777216,
+                  "FactorToVaryColours": "Experiment",
+                  "FactorToVaryMarkers": null,
+                  "FactorToVaryLines": null,
+                  "Marker": 0,
+                  "MarkerSize": 0,
+                  "Line": 4,
+                  "LineThickness": 0,
+                  "TableName": "PredictedObserved",
+                  "XFieldName": "Observed.Rice.Grain.Wt",
+                  "YFieldName": "Predicted.Rice.Grain.Wt",
+                  "X2FieldName": null,
+                  "Y2FieldName": null,
+                  "ShowInLegend": false,
+                  "IncludeSeriesNameInLegend": false,
+                  "Cumulative": false,
+                  "CumulativeX": false,
+                  "Filter": null,
+                  "Name": "plot",
+                  "ResourceName": null,
+                  "Children": [
+                    {
+                      "$type": "Models.Regression, Models",
+                      "ForEachSeries": false,
+                      "showOneToOne": true,
+                      "showEquation": true,
+                      "Name": "Regression",
+                      "ResourceName": null,
+                      "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                }
+              ],
+              "Enabled": true,
+              "ReadOnly": false
+            },
+            {
+              "$type": "Models.Graph, Models",
+              "Caption": null,
+              "Axis": [
+                {
+                  "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                  "Title": null,
+                  "Position": 3,
+                  "Inverted": false,
+                  "CrossesAtZero": false,
+                  "Minimum": "NaN",
+                  "Maximum": "NaN",
+                  "Interval": "NaN"
+                },
+                {
+                  "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                  "Title": null,
+                  "Position": 0,
+                  "Inverted": false,
+                  "CrossesAtZero": false,
+                  "Minimum": null,
+                  "Maximum": null,
+                  "Interval": null
+                }
+              ],
+              "LegendPosition": 0,
+              "LegendOrientation": 0,
+              "AnnotationLocation": 0,
+              "DisabledSeries": [],
+              "LegendOutsideGraph": false,
+              "Name": "PredictedObsBio",
+              "ResourceName": null,
+              "Children": [
+                {
+                  "$type": "Models.Series, Models",
+                  "Type": 1,
+                  "XAxis": 3,
+                  "YAxis": 0,
+                  "ColourArgb": -16777216,
+                  "FactorToVaryColours": "Experiment",
+                  "FactorToVaryMarkers": null,
+                  "FactorToVaryLines": null,
+                  "Marker": 0,
+                  "MarkerSize": 0,
+                  "Line": 4,
+                  "LineThickness": 0,
+                  "TableName": "PredictedObserved",
+                  "XFieldName": "Observed.Rice.AboveGround.Wt",
+                  "YFieldName": "Predicted.Rice.AboveGround.Wt",
+                  "X2FieldName": null,
+                  "Y2FieldName": null,
+                  "ShowInLegend": false,
+                  "IncludeSeriesNameInLegend": false,
+                  "Cumulative": false,
+                  "CumulativeX": false,
+                  "Filter": null,
+                  "Name": "plot",
+                  "ResourceName": null,
+                  "Children": [
+                    {
+                      "$type": "Models.Regression, Models",
+                      "ForEachSeries": false,
+                      "showOneToOne": true,
+                      "showEquation": true,
+                      "Name": "Regression",
+                      "ResourceName": null,
+                      "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                }
+              ],
+              "Enabled": true,
+              "ReadOnly": false
+            },
+            {
+              "$type": "Models.Graph, Models",
+              "Caption": null,
+              "Axis": [
+                {
+                  "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                  "Title": null,
+                  "Position": 3,
+                  "Inverted": false,
+                  "CrossesAtZero": false,
+                  "Minimum": "NaN",
+                  "Maximum": "NaN",
+                  "Interval": "NaN"
+                },
+                {
+                  "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                  "Title": null,
+                  "Position": 0,
+                  "Inverted": false,
+                  "CrossesAtZero": false,
+                  "Minimum": null,
+                  "Maximum": null,
+                  "Interval": null
+                }
+              ],
+              "LegendPosition": 0,
+              "LegendOrientation": 0,
+              "AnnotationLocation": 0,
+              "DisabledSeries": [],
+              "LegendOutsideGraph": false,
+              "Name": "PredictedObsPheno",
+              "ResourceName": null,
+              "Children": [
+                {
+                  "$type": "Models.Series, Models",
+                  "Type": 1,
+                  "XAxis": 3,
+                  "YAxis": 0,
+                  "ColourArgb": -16777216,
+                  "FactorToVaryColours": "Experiment",
+                  "FactorToVaryMarkers": null,
+                  "FactorToVaryLines": null,
+                  "Marker": 0,
+                  "MarkerSize": 0,
+                  "Line": 4,
+                  "LineThickness": 0,
+                  "TableName": "PredictedObserved",
+                  "XFieldName": "Observed.Rice.AboveGround.Wt",
+                  "YFieldName": "Predicted.Rice.AboveGround.Wt",
+                  "X2FieldName": null,
+                  "Y2FieldName": null,
+                  "ShowInLegend": false,
+                  "IncludeSeriesNameInLegend": false,
+                  "Cumulative": false,
+                  "CumulativeX": false,
+                  "Filter": null,
+                  "Name": "plot",
+                  "ResourceName": null,
+                  "Children": [
+                    {
+                      "$type": "Models.Regression, Models",
+                      "ForEachSeries": false,
+                      "showOneToOne": true,
+                      "showEquation": true,
+                      "Name": "Regression",
                       "ResourceName": null,
                       "Children": [],
                       "Enabled": true,
@@ -14045,7 +14529,7 @@
                   "Children": [
                     {
                       "$type": "Models.Clock, Models",
-                      "Start": "1990-01-01T00:00:00",
+                      "Start": "2018-01-01T00:00:00",
                       "End": "2018-12-31T00:00:00",
                       "Name": "Clock",
                       "ResourceName": null,
@@ -14734,7 +15218,7 @@
                             "Sum of [Rice].Leaf.Transpiration from [Rice].Sowing to [Rice].Harvesting as CropET"
                           ],
                           "EventNames": [
-                            "[Rice].Harvesting"
+                            "[Clock].EndOfDay"
                           ],
                           "GroupByVariableName": null,
                           "Name": "SensibilityReport",
@@ -14809,19 +15293,7 @@
                       "Filter": null,
                       "Name": "Series 0",
                       "ResourceName": null,
-                      "Children": [
-                        {
-                          "$type": "Models.Regression, Models",
-                          "ForEachSeries": true,
-                          "showOneToOne": false,
-                          "showEquation": true,
-                          "Name": "Regression",
-                          "ResourceName": null,
-                          "Children": [],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        }
-                      ],
+                      "Children": [],
                       "Enabled": true,
                       "ReadOnly": false
                     }
@@ -14832,18 +15304,7 @@
               ],
               "Enabled": true,
               "ReadOnly": false
-            }
-          ],
-          "Enabled": true,
-          "ReadOnly": false
-        },
-        {
-          "$type": "Models.Core.Folder, Models",
-          "ShowInDocs": false,
-          "GraphsPerPage": 6,
-          "Name": "Grazing",
-          "ResourceName": null,
-          "Children": [
+            },
             {
               "$type": "Models.Factorial.Experiment, Models",
               "DisabledSimNames": null,
@@ -14867,7 +15328,7 @@
                   "Children": [
                     {
                       "$type": "Models.Clock, Models",
-                      "Start": "1998-01-01T00:00:00",
+                      "Start": "2018-01-01T00:00:00",
                       "End": "2018-12-31T00:00:00",
                       "Name": "Clock",
                       "ResourceName": null,
@@ -15672,7 +16133,7 @@
                             "Sum of [Rice].Leaf.Transpiration from [Rice].Sowing to [Rice].Harvesting as CropET"
                           ],
                           "EventNames": [
-                            "[Rice].Harvesting"
+                            "[Clock].EndofDay"
                           ],
                           "GroupByVariableName": null,
                           "Name": "SensibilityReport",
@@ -15724,12 +16185,12 @@
                   "Children": [
                     {
                       "$type": "Models.Series, Models",
-                      "Type": 0,
+                      "Type": 1,
                       "XAxis": 3,
                       "YAxis": 0,
                       "ColourArgb": -16777216,
                       "FactorToVaryColours": null,
-                      "FactorToVaryMarkers": null,
+                      "FactorToVaryMarkers": "Zone",
                       "FactorToVaryLines": null,
                       "Marker": 11,
                       "MarkerSize": 0,
