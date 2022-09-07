@@ -1,6 +1,6 @@
 {
   "$type": "Models.Core.Simulations, Models",
-  "ExplorerWidth": 589,
+  "ExplorerWidth": 730,
   "Version": 155,
   "Name": "Simulations",
   "ResourceName": null,
@@ -251,13 +251,13 @@
                     {
                       "$type": "Models.Functions.XYPairs, Models",
                       "X": [
-                        8.0,
+                        10.0,
                         30.0,
                         42.5
                       ],
                       "Y": [
                         0.0,
-                        22.0,
+                        20.0,
                         0.0
                       ],
                       "XVariableName": null,
@@ -462,7 +462,7 @@
                       "Children": [
                         {
                           "$type": "Models.Functions.Constant, Models",
-                          "FixedValue": 40.0,
+                          "FixedValue": 150.0,
                           "Units": "dd",
                           "Name": "ShootLag",
                           "ResourceName": null,
@@ -1132,7 +1132,7 @@
                             2.0,
                             6.0,
                             9.0,
-                            14.0,
+                            13.0,
                             16.0
                           ],
                           "Y": [
@@ -1140,7 +1140,7 @@
                             0.7,
                             1.0,
                             1.0,
-                            1.3,
+                            1.0,
                             1.3
                           ],
                           "XVariableName": null,
@@ -1165,7 +1165,7 @@
                     },
                     {
                       "$type": "Models.Functions.Constant, Models",
-                      "FixedValue": 120.0,
+                      "FixedValue": 100.0,
                       "Units": "oC.d",
                       "Name": "BasePhyllochron",
                       "ResourceName": null,
@@ -1973,7 +1973,7 @@
                 },
                 {
                   "$type": "Models.Functions.Constant, Models",
-                  "FixedValue": 0.025,
+                  "FixedValue": 0.02,
                   "Units": "g",
                   "Name": "MaximumPotentialGrainSize",
                   "ResourceName": null,
@@ -5359,7 +5359,7 @@
                             },
                             {
                               "$type": "Models.Functions.Constant, Models",
-                              "FixedValue": 0.5,
+                              "FixedValue": 0.4,
                               "Units": null,
                               "Name": "MaximumOrganWt",
                               "ResourceName": null,
@@ -5400,7 +5400,7 @@
                         },
                         {
                           "$type": "Models.Functions.Constant, Models",
-                          "FixedValue": 0.5,
+                          "FixedValue": 0.4,
                           "Units": null,
                           "Name": "StructuralFraction",
                           "ResourceName": null,
@@ -6655,16 +6655,16 @@
                 {
                   "$type": "Models.PMF.Cultivar, Models",
                   "Command": [
-                    "[Phenology].MinimumLeafNumber.FixedValue = 11",
+                    "[Phenology].MinimumLeafNumber.FixedValue = 10",
                     "[Phenology].PpSensitivity.FixedValue = 0",
                     "[Structure].BranchMortality.MortalityPhase.Mortality.MortalityPerDegDay.XYPairs.Y = 0.001,0",
-                    "[Phenology].GrainFilling.Target.FixedValue= 450"
+                    "[Phenology].GrainFilling.Target.FixedValue=300"
                   ],
                   "Lines": [
-                    "[Phenology].MinimumLeafNumber.FixedValue = 11",
+                    "[Phenology].MinimumLeafNumber.FixedValue = 10",
                     "[Phenology].PpSensitivity.FixedValue = 0",
                     "[Structure].BranchMortality.MortalityPhase.Mortality.MortalityPerDegDay.XYPairs.Y = 0.001,0",
-                    "[Phenology].GrainFilling.Target.FixedValue= 450"
+                    "[Phenology].GrainFilling.Target.FixedValue=300"
                   ],
                   "Name": "YRL39",
                   "ResourceName": null,
@@ -6675,14 +6675,16 @@
                 {
                   "$type": "Models.PMF.Cultivar, Models",
                   "Command": [
-                    "[Phenology].MinimumLeafNumber.FixedValue =10",
+                    "[Phenology].MinimumLeafNumber.FixedValue =9",
                     "[Phenology].PpSensitivity.FixedValue = 0",
-                    "[Phenology].GrainFilling.Target.FixedValue= 450"
+                    "[Structure].BranchMortality.MortalityPhase.Mortality.MortalityPerDegDay.XYPairs.Y = 0.001,0",
+                    "[Phenology].GrainFilling.Target.FixedValue= 250"
                   ],
                   "Lines": [
-                    "[Phenology].MinimumLeafNumber.FixedValue =10",
+                    "[Phenology].MinimumLeafNumber.FixedValue =9",
                     "[Phenology].PpSensitivity.FixedValue = 0",
-                    "[Phenology].GrainFilling.Target.FixedValue= 450"
+                    "[Structure].BranchMortality.MortalityPhase.Mortality.MortalityPerDegDay.XYPairs.Y = 0.001,0",
+                    "[Phenology].GrainFilling.Target.FixedValue= 250"
                   ],
                   "Name": "Doongara",
                   "ResourceName": null,
@@ -8019,7 +8021,7 @@
                       "LineThickness": 0,
                       "TableName": "Observed",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Grain.Total.Wt",
+                      "YFieldName": "Rice.Grain.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": true,
@@ -8945,7 +8947,7 @@
                       "LineThickness": 0,
                       "TableName": "Report",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Leaf.LAITotal",
+                      "YFieldName": "Rice.Leaf.LAI",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": false,
@@ -9821,7 +9823,7 @@
                             0.494,
                             0.499
                           ],
-                          "RelativeTo": null,
+                          "RelativeTo": "LL15",
                           "FilledFromTop": false,
                           "Name": "Water",
                           "ResourceName": null,
@@ -10554,6 +10556,18 @@
                             },
                             {
                               "$type": "Models.Operation, Models",
+                              "Date": "2018-01-25",
+                              "Action": "[Fertiliser].Apply(40, Fertiliser.Types.NO3N, 25);",
+                              "Enabled": true
+                            },
+                            {
+                              "$type": "Models.Operation, Models",
+                              "Date": "2018-03-22",
+                              "Action": "[Fertiliser].Apply(160, Fertiliser.Types.NO3N, 25);",
+                              "Enabled": true
+                            },
+                            {
+                              "$type": "Models.Operation, Models",
                               "Date": "2018-12-23",
                               "Action": "[Fertiliser].Apply(0, Fertiliser.Types.NO3N, 50);",
                               "Enabled": true
@@ -10567,7 +10581,7 @@
                             {
                               "$type": "Models.Operation, Models",
                               "Date": "2018-09-12",
-                              "Action": "[Fertiliser].Apply(160, Fertiliser.Types.NO3N, 25)",
+                              "Action": "[Fertiliser].Apply(160,Fertiliser.Types.NO3N, 25)",
                               "Enabled": true
                             }
                           ],
@@ -10642,6 +10656,18 @@
                             },
                             {
                               "$type": "Models.Operation, Models",
+                              "Date": "2018-01-25",
+                              "Action": "[Fertiliser].Apply(100, Fertiliser.Types.NO3N, 25);",
+                              "Enabled": true
+                            },
+                            {
+                              "$type": "Models.Operation, Models",
+                              "Date": "2018-03-22",
+                              "Action": "[Fertiliser].Apply(100, Fertiliser.Types.NO3N, 25);",
+                              "Enabled": true
+                            },
+                            {
+                              "$type": "Models.Operation, Models",
                               "Date": "2018-07-15",
                               "Action": "[Fertiliser].Apply(100, Fertiliser.Types.NO3N, 25);",
                               "Enabled": true
@@ -10671,6 +10697,18 @@
                             {
                               "$type": "Models.Operation, Models",
                               "Date": "2018-03-12",
+                              "Action": "[Fertiliser].Apply(40, Fertiliser.Types.NO3N, 25);",
+                              "Enabled": true
+                            },
+                            {
+                              "$type": "Models.Operation, Models",
+                              "Date": "2018-01-25",
+                              "Action": "[Fertiliser].Apply(160, Fertiliser.Types.NO3N, 25);",
+                              "Enabled": true
+                            },
+                            {
+                              "$type": "Models.Operation, Models",
+                              "Date": "2018-03-22",
                               "Action": "[Fertiliser].Apply(40, Fertiliser.Types.NO3N, 25);",
                               "Enabled": true
                             },
@@ -10711,6 +10749,18 @@
                             {
                               "$type": "Models.Operation, Models",
                               "Date": "2018-03-12",
+                              "Action": "[Fertiliser].Apply(0, Fertiliser.Types.NO3N, 25);",
+                              "Enabled": true
+                            },
+                            {
+                              "$type": "Models.Operation, Models",
+                              "Date": "2018-01-25",
+                              "Action": "[Fertiliser].Apply(200, Fertiliser.Types.NO3N, 25);",
+                              "Enabled": true
+                            },
+                            {
+                              "$type": "Models.Operation, Models",
+                              "Date": "2018-03-22",
                               "Action": "[Fertiliser].Apply(0, Fertiliser.Types.NO3N, 25);",
                               "Enabled": true
                             },
@@ -12919,7 +12969,7 @@
                       "YFieldName": "Rice.Phenology.CurrentStageName",
                       "X2FieldName": null,
                       "Y2FieldName": null,
-                      "ShowInLegend": false,
+                      "ShowInLegend": true,
                       "IncludeSeriesNameInLegend": false,
                       "Cumulative": false,
                       "CumulativeX": false,
@@ -12936,7 +12986,7 @@
                       "XAxis": 3,
                       "YAxis": 0,
                       "ColourArgb": -16747854,
-                      "FactorToVaryColours": "CV",
+                      "FactorToVaryColours": "Experiment",
                       "FactorToVaryMarkers": null,
                       "FactorToVaryLines": null,
                       "Marker": 0,
@@ -15115,7 +15165,7 @@
                       "YFieldName": "Rice.Grain.Total.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
-                      "ShowInLegend": true,
+                      "ShowInLegend": false,
                       "IncludeSeriesNameInLegend": false,
                       "Cumulative": false,
                       "CumulativeX": false,
@@ -15218,6 +15268,240 @@
                       "Name": "observed",
                       "ResourceName": null,
                       "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.Graph, Models",
+                  "Caption": null,
+                  "Axis": [
+                    {
+                      "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                      "Title": null,
+                      "Position": 3,
+                      "Inverted": false,
+                      "CrossesAtZero": false,
+                      "Minimum": "NaN",
+                      "Maximum": "NaN",
+                      "Interval": "NaN"
+                    },
+                    {
+                      "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                      "Title": "",
+                      "Position": 0,
+                      "Inverted": false,
+                      "CrossesAtZero": false,
+                      "Minimum": null,
+                      "Maximum": null,
+                      "Interval": null
+                    }
+                  ],
+                  "LegendPosition": 0,
+                  "LegendOrientation": 0,
+                  "AnnotationLocation": 0,
+                  "DisabledSeries": [],
+                  "LegendOutsideGraph": false,
+                  "Name": "PredictedObsPanicleInitiation",
+                  "ResourceName": null,
+                  "Children": [
+                    {
+                      "$type": "Models.Series, Models",
+                      "Type": 1,
+                      "XAxis": 3,
+                      "YAxis": 0,
+                      "ColourArgb": -16777216,
+                      "FactorToVaryColours": "SimulationName",
+                      "FactorToVaryMarkers": null,
+                      "FactorToVaryLines": null,
+                      "Marker": 0,
+                      "MarkerSize": 0,
+                      "Line": 4,
+                      "LineThickness": 0,
+                      "TableName": "PredictedObserved",
+                      "XFieldName": "Observed.Rice.Phenology.PanicleInitiationDAS",
+                      "YFieldName": "Predicted.Rice.Phenology.PanicleInitiationDAS",
+                      "X2FieldName": null,
+                      "Y2FieldName": null,
+                      "ShowInLegend": false,
+                      "IncludeSeriesNameInLegend": false,
+                      "Cumulative": false,
+                      "CumulativeX": false,
+                      "Filter": null,
+                      "Name": "plot",
+                      "ResourceName": null,
+                      "Children": [
+                        {
+                          "$type": "Models.Regression, Models",
+                          "ForEachSeries": false,
+                          "showOneToOne": true,
+                          "showEquation": true,
+                          "Name": "Regression",
+                          "ResourceName": null,
+                          "Children": [],
+                          "Enabled": true,
+                          "ReadOnly": false
+                        }
+                      ],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.Graph, Models",
+                  "Caption": null,
+                  "Axis": [
+                    {
+                      "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                      "Title": null,
+                      "Position": 3,
+                      "Inverted": false,
+                      "CrossesAtZero": false,
+                      "Minimum": "NaN",
+                      "Maximum": "NaN",
+                      "Interval": "NaN"
+                    },
+                    {
+                      "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                      "Title": "",
+                      "Position": 0,
+                      "Inverted": false,
+                      "CrossesAtZero": false,
+                      "Minimum": null,
+                      "Maximum": null,
+                      "Interval": null
+                    }
+                  ],
+                  "LegendPosition": 0,
+                  "LegendOrientation": 0,
+                  "AnnotationLocation": 0,
+                  "DisabledSeries": [],
+                  "LegendOutsideGraph": false,
+                  "Name": "PredictedObsFlowering",
+                  "ResourceName": null,
+                  "Children": [
+                    {
+                      "$type": "Models.Series, Models",
+                      "Type": 1,
+                      "XAxis": 3,
+                      "YAxis": 0,
+                      "ColourArgb": -16777216,
+                      "FactorToVaryColours": "SimulationName",
+                      "FactorToVaryMarkers": null,
+                      "FactorToVaryLines": null,
+                      "Marker": 0,
+                      "MarkerSize": 0,
+                      "Line": 4,
+                      "LineThickness": 0,
+                      "TableName": "PredictedObserved",
+                      "XFieldName": "Observed.Rice.Phenology.FloweringDAS",
+                      "YFieldName": "Predicted.Rice.Phenology.FloweringDAS",
+                      "X2FieldName": null,
+                      "Y2FieldName": null,
+                      "ShowInLegend": false,
+                      "IncludeSeriesNameInLegend": false,
+                      "Cumulative": false,
+                      "CumulativeX": false,
+                      "Filter": null,
+                      "Name": "plot",
+                      "ResourceName": null,
+                      "Children": [
+                        {
+                          "$type": "Models.Regression, Models",
+                          "ForEachSeries": false,
+                          "showOneToOne": true,
+                          "showEquation": true,
+                          "Name": "Regression",
+                          "ResourceName": null,
+                          "Children": [],
+                          "Enabled": true,
+                          "ReadOnly": false
+                        }
+                      ],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.Graph, Models",
+                  "Caption": null,
+                  "Axis": [
+                    {
+                      "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                      "Title": null,
+                      "Position": 3,
+                      "Inverted": false,
+                      "CrossesAtZero": false,
+                      "Minimum": "NaN",
+                      "Maximum": "NaN",
+                      "Interval": "NaN"
+                    },
+                    {
+                      "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+                      "Title": "Predicted.Rice.Phenology.FloweringDAS",
+                      "Position": 0,
+                      "Inverted": false,
+                      "CrossesAtZero": false,
+                      "Minimum": null,
+                      "Maximum": null,
+                      "Interval": null
+                    }
+                  ],
+                  "LegendPosition": 0,
+                  "LegendOrientation": 0,
+                  "AnnotationLocation": 0,
+                  "DisabledSeries": [],
+                  "LegendOutsideGraph": false,
+                  "Name": "PredictedObsMaturity",
+                  "ResourceName": null,
+                  "Children": [
+                    {
+                      "$type": "Models.Series, Models",
+                      "Type": 1,
+                      "XAxis": 3,
+                      "YAxis": 0,
+                      "ColourArgb": -16777216,
+                      "FactorToVaryColours": "SimulationName",
+                      "FactorToVaryMarkers": null,
+                      "FactorToVaryLines": null,
+                      "Marker": 0,
+                      "MarkerSize": 0,
+                      "Line": 4,
+                      "LineThickness": 0,
+                      "TableName": "PredictedObserved",
+                      "XFieldName": "Observed.Rice.Phenology.MaturityDAS",
+                      "YFieldName": "Predicted.Rice.Phenology.MaturityDAS",
+                      "X2FieldName": null,
+                      "Y2FieldName": null,
+                      "ShowInLegend": false,
+                      "IncludeSeriesNameInLegend": false,
+                      "Cumulative": false,
+                      "CumulativeX": false,
+                      "Filter": null,
+                      "Name": "plot",
+                      "ResourceName": null,
+                      "Children": [
+                        {
+                          "$type": "Models.Regression, Models",
+                          "ForEachSeries": false,
+                          "showOneToOne": true,
+                          "showEquation": true,
+                          "Name": "Regression",
+                          "ResourceName": null,
+                          "Children": [],
+                          "Enabled": true,
+                          "ReadOnly": false
+                        }
+                      ],
                       "Enabled": true,
                       "ReadOnly": false
                     }
@@ -16214,7 +16498,7 @@
                       "LineThickness": 0,
                       "TableName": "Report",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Grain.Wt",
+                      "YFieldName": "Rice.Grain.Total.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": false,
@@ -16243,7 +16527,7 @@
                       "LineThickness": 0,
                       "TableName": "Observed",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Grain.Wt",
+                      "YFieldName": "Rice.Grain.Total.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": true,
@@ -17764,7 +18048,7 @@
                 },
                 {
                   "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
-                  "Title": "Predicted.Rice.Phenology.FloweringDAS",
+                  "Title": "",
                   "Position": 0,
                   "Inverted": false,
                   "CrossesAtZero": false,
@@ -17962,19 +18246,18 @@
                   "Filter": null,
                   "Name": "plot",
                   "ResourceName": null,
-                  "Children": [
-                    {
-                      "$type": "Models.Regression, Models",
-                      "ForEachSeries": false,
-                      "showOneToOne": true,
-                      "showEquation": true,
-                      "Name": "Regression",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    }
-                  ],
+                  "Children": [],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.Regression, Models",
+                  "ForEachSeries": true,
+                  "showOneToOne": true,
+                  "showEquation": true,
+                  "Name": "Regression",
+                  "ResourceName": null,
+                  "Children": [],
                   "Enabled": true,
                   "ReadOnly": false
                 }
