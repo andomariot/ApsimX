@@ -1,6 +1,6 @@
 {
   "$type": "Models.Core.Simulations, Models",
-  "ExplorerWidth": 300,
+  "ExplorerWidth": 549,
   "Version": 155,
   "Name": "Simulations",
   "ResourceName": null,
@@ -295,7 +295,17 @@
                   "DayLength": 0.0,
                   "Name": "Photoperiod",
                   "ResourceName": null,
-                  "Children": [],
+                  "Children": [
+                    {
+                      "$type": "Models.Memo, Models",
+                      "Text": "In Oryza sun is considered above the horizon when solar incliation is higher than 15 degree with a sine of solar inclination at 0.2617 radians. Bouman et al 2001.",
+                      "Name": "Memo",
+                      "ResourceName": null,
+                      "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
                   "Enabled": true,
                   "ReadOnly": false
                 },
@@ -1140,8 +1150,8 @@
                             0.7,
                             1.0,
                             1.0,
-                            1.0,
-                            1.3
+                            0.9,
+                            0.9
                           ],
                           "XVariableName": null,
                           "Name": "XYPairs",
@@ -1722,7 +1732,7 @@
                 },
                 {
                   "$type": "Models.Functions.MovingAverageFunction, Models",
-                  "NumberOfDays": 70,
+                  "NumberOfDays": 90,
                   "StageToStartMovingAverage": "Emergence",
                   "Name": "MeanPhyllochron",
                   "ResourceName": null,
@@ -3429,7 +3439,7 @@
                   "StructuralDMAllocation": 0.0,
                   "MetabolicDMAllocation": 0.0,
                   "Rank": 1,
-                  "Area": 50.0,
+                  "Area": 200.0,
                   "Name": "InitialLeaves[1]",
                   "ResourceName": null,
                   "Children": [],
@@ -3462,7 +3472,7 @@
                   "StructuralDMAllocation": 0.0,
                   "MetabolicDMAllocation": 0.0,
                   "Rank": 2,
-                  "Area": 50.0,
+                  "Area": 200.0,
                   "Name": "InitialLeaves[2]",
                   "ResourceName": null,
                   "Children": [],
@@ -4310,8 +4320,8 @@
                             4.0
                           ],
                           "Y": [
-                            4500.0,
-                            6500.0
+                            45000.0,
+                            20000.0
                           ],
                           "XVariableName": null,
                           "Name": "XYPairs",
@@ -4345,8 +4355,8 @@
                             1.0
                           ],
                           "Y": [
-                            1500.0,
-                            1800.0
+                            15000.0,
+                            18000.0
                           ],
                           "XVariableName": null,
                           "Name": "XYPairs",
@@ -4860,7 +4870,7 @@
                   "Children": [
                     {
                       "$type": "Models.Functions.Constant, Models",
-                      "FixedValue": 0.7,
+                      "FixedValue": 0.4,
                       "Units": null,
                       "Name": "ExtinctionCoeff",
                       "ResourceName": null,
@@ -8879,16 +8889,16 @@
                       "Code": "using Models.Soils.Nutrients;\r\nusing System;\r\nusing Models.Core;\r\nusing Models.PMF;\r\nusing Models.Soils;\r\nusing Models.Soils.Nutrients;\r\nusing Models.Utilities;\r\nusing APSIM.Shared.Utilities;\r\n\r\nnamespace Models\r\n{\r\n    [Serializable]\r\n    public class Script : Model\r\n    {\r\n        [Link] Clock Clock;\r\n        [Link] Fertiliser Fertiliser;\r\n        [Link] Summary Summary;\r\n        [Link] Soil Soil;\r\n        Accumulator accumulatedRain;\r\n        \r\n        [Description(\"Crop\")]\r\n        public IPlant Crop { get; set; }\r\n        [Description(\"Sowing date (d-mmm)\")]\r\n        public string SowDate { get; set; }\r\n    [Display(Type = DisplayType.CultivarName)]\r\n        [Description(\"Cultivar to be sown\")]\r\n        public string CultivarName { get; set; }\r\n        [Description(\"Sowing depth (mm)\")]\r\n        public double SowingDepth { get; set; }\r\n        [Description(\"Row spacing (mm)\")]\r\n        public double RowSpacing { get; set; }\r\n        [Description(\"Plant population (/m2)\")]\r\n        public double Population { get; set; }\r\n        \r\n\r\n\r\n        [EventSubscribe(\"DoManagement\")]\r\n        private void OnDoManagement(object sender, EventArgs e)\r\n        {\r\n            if (DateUtilities.WithinDates(SowDate, Clock.Today, SowDate))\r\n            {\r\n                Crop.Sow(population: Population, cultivar: CultivarName, depth: SowingDepth, rowSpacing: RowSpacing);    \r\n            }\r\n        \r\n        }\r\n        \r\n    }\r\n}\r\n",
                       "Parameters": [
                         {
-                          "Key": "Crop",
-                          "Value": "[Rice]"
+                          "Key": "CultivarName",
+                          "Value": "YRL39"
                         },
                         {
                           "Key": "SowDate",
                           "Value": "22-Jan"
                         },
                         {
-                          "Key": "CultivarName",
-                          "Value": "YRL39"
+                          "Key": "Crop",
+                          "Value": "[Rice]"
                         },
                         {
                           "Key": "SowingDepth",
@@ -8966,18 +8976,6 @@
                           "Date": "2018-07-21",
                           "Action": "[Fertiliser].Apply(0, Fertiliser.Types.NO3N, 25);",
                           "Enabled": true
-                        },
-                        {
-                          "$type": "Models.Operation, Models",
-                          "Date": "2018-05-16",
-                          "Action": "[Rice].Harvest ();",
-                          "Enabled": true
-                        },
-                        {
-                          "$type": "Models.Operation, Models",
-                          "Date": "2018-12-22",
-                          "Action": "[Rice].Harvest();",
-                          "Enabled": true
                         }
                       ],
                       "Name": "Operations",
@@ -9039,6 +9037,28 @@
                       "$type": "Models.PMF.Plant, Models",
                       "Name": "Rice",
                       "ResourceName": "Barley",
+                      "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    },
+                    {
+                      "$type": "Models.Operations, Models",
+                      "Operation": [
+                        {
+                          "$type": "Models.Operation, Models",
+                          "Date": "2018-05-16",
+                          "Action": "[Rice].Harvest();",
+                          "Enabled": true
+                        },
+                        {
+                          "$type": "Models.Operation, Models",
+                          "Date": "2018-12-25",
+                          "Action": "[Rice].Harvest();",
+                          "Enabled": true
+                        }
+                      ],
+                      "Name": "HarvestDate",
+                      "ResourceName": null,
                       "Children": [],
                       "Enabled": true,
                       "ReadOnly": false
@@ -9106,7 +9126,7 @@
                       "LineThickness": 0,
                       "TableName": "Report",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Leaf.LAI",
+                      "YFieldName": "Rice.Leaf.LAITotal",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": false,
@@ -9484,7 +9504,7 @@
                     },
                     {
                       "$type": "Models.Regression, Models",
-                      "ForEachSeries": true,
+                      "ForEachSeries": false,
                       "showOneToOne": true,
                       "showEquation": true,
                       "Name": "Regression",
@@ -13249,7 +13269,7 @@
                   "AnnotationLocation": 0,
                   "DisabledSeries": [],
                   "LegendOutsideGraph": false,
-                  "Name": "LAI",
+                  "Name": "Biomass",
                   "ResourceName": null,
                   "Children": [
                     {
@@ -13267,7 +13287,7 @@
                       "LineThickness": 0,
                       "TableName": "Report",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Leaf.LAI",
+                      "YFieldName": "Rice.AboveGround.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": false,
@@ -13296,7 +13316,7 @@
                       "LineThickness": 0,
                       "TableName": "Observed",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Leaf.LAI",
+                      "YFieldName": "Rice.AboveGround.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": true,
@@ -13473,7 +13493,7 @@
                     },
                     {
                       "$type": "Models.Regression, Models",
-                      "ForEachSeries": true,
+                      "ForEachSeries": false,
                       "showOneToOne": true,
                       "showEquation": true,
                       "Name": "Regression",
@@ -14368,7 +14388,7 @@
                   "AnnotationLocation": 0,
                   "DisabledSeries": [],
                   "LegendOutsideGraph": false,
-                  "Name": "LAI",
+                  "Name": "Biomass",
                   "ResourceName": null,
                   "Children": [
                     {
@@ -14386,7 +14406,7 @@
                       "LineThickness": 0,
                       "TableName": "Report",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Leaf.LAI",
+                      "YFieldName": "Rice.AboveGround.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": false,
@@ -14415,7 +14435,7 @@
                       "LineThickness": 0,
                       "TableName": "Observed",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Leaf.LAI",
+                      "YFieldName": "Rice.AboveGround.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": true,
@@ -15588,7 +15608,7 @@
                   "AnnotationLocation": 0,
                   "DisabledSeries": [],
                   "LegendOutsideGraph": false,
-                  "Name": "LAI",
+                  "Name": "Biomas",
                   "ResourceName": null,
                   "Children": [
                     {
@@ -15606,7 +15626,7 @@
                       "LineThickness": 0,
                       "TableName": "Report",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Leaf.LAI",
+                      "YFieldName": "Rice.AboveGround.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": false,
@@ -15635,7 +15655,7 @@
                       "LineThickness": 0,
                       "TableName": "Observed",
                       "XFieldName": "Clock.Today",
-                      "YFieldName": "Rice.Leaf.LAI",
+                      "YFieldName": "Rice.AboveGround.Wt",
                       "X2FieldName": null,
                       "Y2FieldName": null,
                       "ShowInLegend": true,
@@ -17405,7 +17425,7 @@
                     },
                     {
                       "$type": "Models.Regression, Models",
-                      "ForEachSeries": true,
+                      "ForEachSeries": false,
                       "showOneToOne": true,
                       "showEquation": true,
                       "Name": "Regression",
@@ -19240,9 +19260,9 @@
                 },
                 {
                   "$type": "Models.Regression, Models",
-                  "ForEachSeries": true,
+                  "ForEachSeries": false,
                   "showOneToOne": true,
-                  "showEquation": true,
+                  "showEquation": false,
                   "Name": "Regression",
                   "ResourceName": null,
                   "Children": [],
