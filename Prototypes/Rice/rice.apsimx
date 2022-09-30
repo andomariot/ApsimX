@@ -1,6 +1,6 @@
 {
   "$type": "Models.Core.Simulations, Models",
-  "ExplorerWidth": 549,
+  "ExplorerWidth": 582,
   "Version": 155,
   "Name": "Simulations",
   "ResourceName": null,
@@ -19,7 +19,7 @@
           "Children": [
             {
               "$type": "Models.Memo, Models",
-              "Text": "_Brown, H.E., Huth, N.I., Khaembah E.N., Zyskowski, R., and Holzworth, D.P._\n",
+              "Text": "This model has been developped with the support of BACI- USQ-QDAF led by A.M Radanielson in collaboration with UQ and CSIRO.\n",
               "Name": "TitlePage",
               "ResourceName": null,
               "Children": [],
@@ -291,7 +291,7 @@
                 },
                 {
                   "$type": "Models.Functions.PhotoperiodFunction, Models",
-                  "Twilight": -6.0,
+                  "Twilight": 15.0,
                   "DayLength": 0.0,
                   "Name": "Photoperiod",
                   "ResourceName": null,
@@ -302,6 +302,26 @@
                       "Name": "Memo",
                       "ResourceName": null,
                       "Children": [],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    },
+                    {
+                      "$type": "Models.Functions.PhotoperiodFunction, Models",
+                      "Twilight": 15.0,
+                      "DayLength": 0.0,
+                      "Name": "Photoperiod",
+                      "ResourceName": null,
+                      "Children": [
+                        {
+                          "$type": "Models.Memo, Models",
+                          "Text": "In Oryza sun is considered above the horizon when solar incliation is higher than 15 degree with a sine of solar inclination at 0.2617 radians. Bouman et al 2001.",
+                          "Name": "Memo",
+                          "ResourceName": null,
+                          "Children": [],
+                          "Enabled": true,
+                          "ReadOnly": false
+                        }
+                      ],
                       "Enabled": true,
                       "ReadOnly": false
                     }
@@ -707,7 +727,7 @@
                                         1.0,
                                         1.0,
                                         1.0,
-                                        1.5
+                                        1.0
                                       ],
                                       "XVariableName": null,
                                       "Name": "XYPairs",
@@ -1150,8 +1170,8 @@
                             0.7,
                             1.0,
                             1.0,
-                            0.9,
-                            0.9
+                            1.0,
+                            1.0
                           ],
                           "XVariableName": null,
                           "Name": "XYPairs",
@@ -1175,7 +1195,7 @@
                     },
                     {
                       "$type": "Models.Functions.Constant, Models",
-                      "FixedValue": 100.0,
+                      "FixedValue": 105.0,
                       "Units": "oC.d",
                       "Name": "BasePhyllochron",
                       "ResourceName": null,
