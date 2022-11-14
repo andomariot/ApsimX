@@ -24,6 +24,7 @@ namespace APSIM.Documentation
         private const string agpScience = "https://apsimdev.apsim.info/ApsimX/Documents/AgPastureScience.pdf";
         private const string microClimateScience = "https://www.apsim.info/wp-content/uploads/2019/09/Micromet.pdf";
         private const string grazPlan = "https://grazplan.csiro.au/wp-content/uploads/2007/08/TechPaperMay12.pdf";
+        private const string swim = "https://apsimdev.apsim.info/ApsimX/Documents/SWIMv21UserManual.pdf";
 
         private static PdfOptions options = PdfOptions.Default;
 
@@ -98,6 +99,7 @@ namespace APSIM.Documentation
                 StandardTutorialRow("Parameter sensitivity (Morris)", "Sensitivity_MorrisMethod"),
                 StandardTutorialRow("Parameter sensitivity (SOBOL)", "Sensitivity_SobolMethod"),
                 StandardTutorialRow("Parameter sensitivity (Factorial ANOVA)", "Sensitivity_FactorialANOVA"),
+                StandardTutorialRow("Predicted/Observed data handling", "PredictedObserved"),
                 StandardTutorialRow("Report", "Report"),
             };
             return new DocumentationTable("Tutorials", cols, rows);
@@ -131,7 +133,7 @@ namespace APSIM.Documentation
                 StandardPmfPlantRow("OilPalm"),
                 StandardPmfPlantRow("Peanut"),
                 StandardPmfPlantRow("Pinus"),
-                StandardPmfPlantRow("Plantain"),
+                StandardPmfPlantRow("PlantainForage"),
                 StandardPmfPlantRow("Potato"),
                 StandardPmfPlantRow("RedClover"),
                 StandardPmfPlantRow("SCRUM"),
@@ -142,7 +144,7 @@ namespace APSIM.Documentation
                 StandardPmfPlantRow("Soybean"),
                 SugarcaneRow(),
                 StockRow(),
-                ModelWithNoResourceRow("SWIM", isUnderReview:true),
+                ModelWithNoResourceRow("SWIM", extraCells: new[] { new DocumentationCell(new ExternalDocument("SWIM Technical Documentation (1996)", swim)) }),
                 StandardPmfPlantRow("Wheat"),
                 StandardPmfPlantRow("WhiteClover"),
             };
@@ -245,7 +247,7 @@ namespace APSIM.Documentation
                 validationFile = Path.Combine(validation, modelName, $"{modelName}.apsimx");
             IEnumerable<string> inputs = new string[1] { validationFile };
             
-            IDocumentationFile paramsDocs = new ParamsDocsFromFile(validationFile, $"{modelName}-params.pdf", options);
+            IDocumentationFile paramsDocs = new ParamsDocsFromFile(validationFile, $"{modelName}-params.pdf", options, path:modelName);
             IDocumentationCell paramsCell = new DocumentationCell(paramsDocs);
             extraCells = extraCells == null ? paramsCell.ToEnumerable() : extraCells.Prepend(paramsCell);
            

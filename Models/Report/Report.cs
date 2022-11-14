@@ -59,10 +59,6 @@ namespace Models
         [Link]
         private IDataStore storage = null;
 
-        /// <summary>Link to a locator service.</summary>
-        [Link]
-        private ILocator locator = null;
-
         /// <summary>Link to an event service.</summary>
         [Link]
         [NonSerialized]
@@ -378,7 +374,7 @@ namespace Models
                 try
                 {
                     if (!string.IsNullOrEmpty(fullVariableName))
-                        Columns.Add(new ReportColumn(fullVariableName, clock, locator, events, GroupByVariableName, from, to));
+                        Columns.Add(new ReportColumn(fullVariableName, clock, Locator, events, GroupByVariableName, from, to));
                 }
                 catch (Exception err)
                 {
