@@ -169,7 +169,6 @@ namespace Models.DCAPST
     /// <summary>
     /// Describes parameters used in leaf temperature calculations
     /// </summary>
-    [Serializable]
     public class LeafTemperatureParameters
     {
         /// <summary>
